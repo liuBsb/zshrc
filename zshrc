@@ -37,5 +37,8 @@ zmodload zsh/datetime           # EPOCHSECONDS
     local config_file
     for config_file ($ZSH/rc/*.zsh) source $config_file
 }
-
+() {
+    local zsh_plugin
+    for zsh_plugin ($ZSH/third-party/*.zsh) source $zsh_plugin
+}
 :
