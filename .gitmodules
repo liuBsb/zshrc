@@ -1,3 +1,6 @@
+[submodule "third-party/powerlevel10k"]
+  path = third-party/powerlevel10k
+  url = git@github.com:romkatv/powerlevel10k.git
 [submodule "third-party/docker-zsh-completion"]
   path = third-party/powerlevel10k
   url = git@github.com:romkatv/powerlevel10k.git
