@@ -6,5 +6,5 @@ fi
 typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens'
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source $ZSH/third-party/powerlevel10k/powerlevel10k.zsh
+source $ZSH/third-party/powerlevel10k/powerlevel10k.zsh-theme
 

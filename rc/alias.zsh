@@ -18,14 +18,23 @@ bindkey -M emacs " " _vbe_zle-autoexpand
 bindkey -M emacs "^ " magic-space
 bindkey -M isearch " " magic-space
 
-# Some generic aliases
+#some generic aliases 
 alias df='df -h'
 alias du='du -h'
 alias rm='rm -i'
 alias mv='mv -i'
 alias chown='chown -h'
 alias chgrp='chgrp -h'
-abbrev-alias tailf='tail -F'           # not shipped in util-linux anymore
+alias ls="exa --icons"
+alias ll="exa --icons -l" 
+alias la="exa --icons -a"
+alias lf="exa --icons -la"
+alias bat="bat --style=auto"
+alias addcommit="git add . && commit"
+alias rs="source ~/.zshrc"
+alias denv="cd ~/Projects/"
+alias zshfiles="cd ~/.zsh/rc/"
+          # not shipped in util-linux anymore
 alias reexec="exec ${ZSH_ARGZERO+-a $ZSH_ARGZERO} $SHELL"
 () {
     local dmesg_version=${${${:-"$(dmesg --version 2> /dev/null)"}##* }:-0.0}
