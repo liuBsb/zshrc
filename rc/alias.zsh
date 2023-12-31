@@ -25,11 +25,6 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias chown='chown -h'
 alias chgrp='chgrp -h'
-alias exi='exa --icons'
-alias ls="exi"
-alias ll="exi -l"
-alias la="exi -a"
-alias lf="exi -la"
 alias bat="bat --style=auto"
 alias gfull="git add . && commit"
 alias gs="git status"
@@ -52,10 +47,10 @@ alias reexec="exec ${ZSH_ARGZERO+-a $ZSH_ARGZERO} $SHELL"
 (( $+commands[dragon] )) && alias dragon='dragon -x'
 
 # Fix typos
-(( $+commands[git] )) && abbrev-alias gti=git
-(( $+commands[grep] )) && abbrev-alias grpe=grep
-(( $+commands[sudo] )) && abbrev-alias suod=sudo
-(( $+commands[ssh] )) && abbrev-alias shs=ssh
+(( $+commands[git] )) && abbrev-alias gti='git'
+(( $+commands[grep] )) && abbrev-alias grpe='grep'
+(( $+commands[sudo] )) && abbrev-alias suod='sudo'
+(( $+commands[ssh] )) && abbrev-alias shs='ssh'
 
 # Automatic sudo
 # docker is using its own wrapper
@@ -76,28 +71,42 @@ alias reexec="exec ${ZSH_ARGZERO+-a $ZSH_ARGZERO} $SHELL"
     }
 }
 
-# ls
-abbrev-alias ll='ls -ltrhA'
-if ls --color=auto --g -d . &> /dev/null; then
-    # GNU ls
+# Checks if the exa command is available
+if command -v exa &> /dev/null; then
+ 
+    alias ll='exa -lh --git'
+    alias exi='exa --icons'
+    alias ls="exi"
+    alias la="exi -a"
+    alias lf="exi -la"
+
     if (( ${terminfo[colors]:-0} >= 8 )); then
-        export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
-        alias ls='ls --color=auto --g'
+        alias exa='exa --color=auto'
     else
-        unset LS_COLORS
-        alias ls='ls --g -p'
-    fi
-elif ls -G -d . &> /dev/null; then
-    # FreeBSD ls
-    if (( ${terminfo[colors]:-0} >= 8 )); then
-        export LSCOLORS="Gxfxcxdxbxegedabagacad"
-        alias ls='ls -G'
-    else
-        unset LSCOLORS
-        alias ls='ls -p'
+        alias exa='exa'
     fi
 else
-    alias ls='ls -p'
+    alias ll='ls -ltrhA'
+
+    if ls --color=auto --g -d . &> /dev/null; then
+        if (( ${terminfo[colors]:-0} >= 8 )); then
+            export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
+            alias ls='ls --color=auto --g'
+        else
+            unset LS_COLORS
+            alias ls='ls --g -p'
+        fi
+    elif ls -G -d . &> /dev/null; then
+        if (( ${terminfo[colors]:-0} >= 8 )); then
+            export LSCOLORS="Gxfxcxdxbxegedabagacad"
+            alias ls='ls -G'
+        else
+            unset LSCOLORS
+            alias ls='ls -p'
+        fi
+    else
+        alias ls='ls -p'
+    fi
 fi
 
 # System init-related aliases
@@ -728,3 +737,4 @@ alias virtualenv2='_virtualenv 2'
 alias virtualenv3='_virtualenv 3'
 (( $+commands[python2] )) && alias virtualenv='_virtualenv 2'
 (( $+commands[python3] )) && alias virtualenv='_virtualenv 3'
+:
