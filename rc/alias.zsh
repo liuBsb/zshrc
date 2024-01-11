@@ -737,4 +737,7 @@ alias virtualenv2='_virtualenv 2'
 alias virtualenv3='_virtualenv 3'
 (( $+commands[python2] )) && alias virtualenv='_virtualenv 2'
 (( $+commands[python3] )) && alias virtualenv='_virtualenv 3'
+
+alias sisou=/home/liu/.asdf/installs/python/3.12.0/bin/sisou
 :
+
